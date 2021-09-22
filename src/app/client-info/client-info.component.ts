@@ -9,14 +9,14 @@ import { MailBox } from 'src/app/models/app.models';
 })
 
 export class ClientInfoComponent implements OnInit {
-  collection: any;
+  mailbox: any;
   constructor(private client: ClientService) { }
 
   ngOnInit(): void {
     this.client.getAllData().subscribe((data: any) => {
       console.log(data);
       debugger;
-      this.collection =  data;
+      this.mailbox = data;
     });
   }
 

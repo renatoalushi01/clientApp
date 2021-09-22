@@ -8,10 +8,8 @@ import { HttpClient } from '@angular/common/http';
 export class ClientService {
   url: string = "https://localhost:44392/api/client";
   constructor(private http: HttpClient) { }
-
   getAllData() {
-    
-    return this.http.get<any>(this.url);
+    return this.http.get<MailBox>(this.url);
   }
 }
 
