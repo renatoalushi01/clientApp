@@ -1,1 +1,78 @@
-<p>product-add works!</p>
+<div class="card">
+  <div class="col-8">
+    <h5 class="card-header">New Product</h5>
+  <div class="card-body">
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            required
+            [(ngModel)]="product.name"
+            name="name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <input
+            type="text"
+            class="form-control"
+            id="category"
+            required
+            [(ngModel)]="product.category"
+            name="category"
+          />
+        </div>
+        <div class="form-group">
+          <label for="summary">Summary</label>
+          <input
+            type="text"
+            class="form-control"
+            id="summary"
+            required
+            [(ngModel)]="product.summary"
+            name="summary"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            required
+            [(ngModel)]="product.description"
+            name="description"
+          ></textarea>
+        </div>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input type="number" class="form-control"
+             id="price"
+              aria-label="Amount (to the nearest dollar)"
+              [(ngModel)]="product.price"
+              name="price"
+              >
+            <div class="input-group-append">
+              <span class="input-group-text">.00</span>
+            </div>
+        </div>
+  
+        <button (click)="saveNewProduct()" class="btn btn-success">Submit</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>Product was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="addNewProduct()">Add Another</button>
+        <a class="btn btn-info" routerLink="product-list">Back</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

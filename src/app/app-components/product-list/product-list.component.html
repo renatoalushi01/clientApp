@@ -1,1 +1,56 @@
-<p>product-list works!</p>
+<div class="container">
+  <div class="row">
+    <div class="input-group mb-2">
+      <a routerLink="/product-add" title="new product" class="btn btn-primary float-right">new product</a><br/>
+    </div>
+    <div class="input-group mb-6">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by name"
+        [(ngModel)]="search.name"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by category"
+        [(ngModel)]="search.category"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchName()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products; index as i">
+            <td>{{i +1}}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.category }}</td>
+            <td>{{ product.price }} $</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="col-md-12">
+        <pagination-controls
+          previousLabel="Prev"
+          nextLabel="Next"
+          [responsive]="true"
+          (pageChange)="handlePageChange($event)"
+        ></pagination-controls>
+      </div>
+</div>

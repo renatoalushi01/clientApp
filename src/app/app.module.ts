@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductListComponent } from './app-components/product-list/product-list.component';
 import { ProductDetailsComponent } from './app-components/product-details/product-details.component';
 import { ProductAddComponent } from './app-components/product-add/product-add.component';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ProductAddComponent } from './app-components/product-add/product-add.co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
