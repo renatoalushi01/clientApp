@@ -14,16 +14,23 @@ export class ProductsService {
     constructor(private http: HttpClient){}
 
     getAllProducts(params: Search): Observable<any>{
-        if(params.name !== ''){
-            return this.http.get<any>(baseUrl + "/GetProductByName/" + params.name);
+        console.log(params);
+        if(params){
+            if(params.name !== '' && params.category == ''){
+                return this.http.get<any>(baseUrl + "/GetProductByName/" + params.name);
+            }
+            else if(params.category !== '' && params.name == ''){
+                return this.http.get<any>(baseUrl + "/GetProductByCategory/" + params.category);
+            }
         }
-        // if(params.category !== ''){
-        //     return this.http.get<any>(baseUrl + "/GetProductByCategory/" + params.category);
-        // }
-        return this.http.get<any>(baseUrl);
+        return this.http.get<any>(baseUrl, <any>params.page);
     }
 
     addProduct(data: any): Observable<any>{
         return this.http.post(baseUrl, data);
+    }
+
+    deleteProduct(id: any): Observable<any>{
+        return this.http.delete(baseUrl + "/DeleteProductById/" + id);
     }
 }

@@ -18,11 +18,20 @@
       />
       <div class="input-group-append">
         <button
-          class="btn btn-outline-secondary"
+          class="btn btn-info"
           type="button"
           (click)="searchName()"
         >
           Search
+        </button>
+      </div>
+      <div class="input-group-append">
+        <button
+          class="btn btn-secondary"
+          type="button"
+          (click)="clearSearch()"
+        >
+          Clear
         </button>
       </div>
     </div>
@@ -34,6 +43,7 @@
             <th scope="col">Name</th>
             <th scope="col">Category</th>
             <th scope="col">Price</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -42,6 +52,7 @@
             <td>{{ product.name }}</td>
             <td>{{ product.category }}</td>
             <td>{{ product.price }} $</td>
+            <td><button type=button class="btn btn-outline-danger"  (click)="confirmDelete(product.id)">Delete</button></td>
           </tr>
         </tbody>
       </table>

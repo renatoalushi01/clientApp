@@ -14,7 +14,8 @@ export class ProductListComponent implements OnInit {
   currentIndex = -1;
   search: Search = {
     name: '',
-    page: 1
+    page: 1,
+    category: ''
   };
   
   count = 0;
@@ -52,11 +53,11 @@ export class ProductListComponent implements OnInit {
       });
   }
 
-  handlePageSizeChange(event: any): void {
-    this.pageSize = event.target.value;
-    this.search.page = 1;
-    this.retriveProducts();
-  }
+  // handlePageSizeChange(event: any): void {
+  //   this.pageSize = event.target.value;
+  //   this.search.page = 1;
+  //   this.retriveProducts();
+  // }
   handlePageChange(event: number): void {
     this.search.page = event;
     this.retriveProducts();
@@ -65,6 +66,26 @@ export class ProductListComponent implements OnInit {
   searchName(): void {
     this.search.page = 1;
     this.retriveProducts();
+  }
+  clearSearch(): void{
+    this.search = {
+      name: '',
+      page: 1,
+      category: ''
+    };
+  }
+
+  confirmDelete(id: string): void{
+    if(confirm("Are you sure to delete ")) {
+      this.prodService.deleteProduct(id).subscribe(
+        response => {
+          this.retriveProducts();
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 
 }
