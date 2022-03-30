@@ -47,7 +47,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let product of products; index as i">
+          <tr *ngFor="let product of products| paginate : {
+                      itemsPerPage: pageSize,
+                      currentPage: search.page,
+                      totalItems: count
+                      };
+                      let i = index">
             <td>{{i +1}}</td>
             <td>{{ product.name }}</td>
             <td>{{ product.category }}</td>

@@ -17,9 +17,8 @@ export class ProductListComponent implements OnInit {
     page: 1,
     category: ''
   };
-  
   count = 0;
-  pageSize = 3;
+  pageSize = 5;
   ngOnInit(): void {
     this.retriveProducts();
   }
@@ -46,7 +45,8 @@ export class ProductListComponent implements OnInit {
     const params = this.getRequestParams(this.search);
     this.prodService.getAllProducts(params).subscribe(
       response => {
-        this.products = response;
+        this.products = response.data;
+        this.count = response.total;
       },
       error => {
         console.log(error);
@@ -73,6 +73,7 @@ export class ProductListComponent implements OnInit {
       page: 1,
       category: ''
     };
+    this.retriveProducts();
   }
 
   confirmDelete(id: string): void{
