@@ -52,12 +52,6 @@ export class ProductListComponent implements OnInit {
         console.log(error);
       });
   }
-
-  // handlePageSizeChange(event: any): void {
-  //   this.pageSize = event.target.value;
-  //   this.search.page = 1;
-  //   this.retriveProducts();
-  // }
   handlePageChange(event: number): void {
     this.search.page = event;
     this.retriveProducts();

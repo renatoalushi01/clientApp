@@ -63,8 +63,9 @@
               <span class="input-group-text">.00</span>
             </div>
         </div>
-  
-        <button (click)="saveNewProduct()" class="btn btn-success">Submit</button>
+        <br />
+        <button (click)="saveNewProduct()" class="btn btn-primary">Submit</button>
+        <a routerLink="/product-list" class="btn btn-secondary" style="float:right;">Back</a>
       </div>
   
       <div *ngIf="submitted">

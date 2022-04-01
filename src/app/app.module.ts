@@ -1,15 +1,18 @@
+import { ProductEditComponent } from './app-components/product-edit/product-edit.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProductListComponent } from './app-components/product-list/product-list.component';
 import { ProductDetailsComponent } from './app-components/product-details/product-details.component';
 import { ProductAddComponent } from './app-components/product-add/product-add.component';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AddHeaderinterceptor } from './services/add-header.interceptor';
+import { LogResponseInterceptor } from './services/log-response.interceptor';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MenuComponent,
     ProductListComponent,
     ProductDetailsComponent,
-    ProductAddComponent
+    ProductAddComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AddHeaderinterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LogResponseInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 
 })
