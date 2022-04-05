@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddHeaderinterceptor } from './services/add-header.interceptor';
 import { LogResponseInterceptor } from './services/log-response.interceptor';
+import { CacheInterceptor } from './services/cache.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { LogResponseInterceptor } from './services/log-response.interceptor';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AddHeaderinterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: LogResponseInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: LogResponseInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 

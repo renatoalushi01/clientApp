@@ -1,3 +1,4 @@
+import { CACHEABLE } from './cache.interceptor';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpContextToken, HttpContext } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -19,17 +20,19 @@ export class ProductsService {
         if(params){
             if(params.name !== '' && params.category == ''){
                 return this.http.get<any>(`${baseUrl}/GetProductByName/${params.name}`,{
-                   headers: new HttpHeaders({
-                    'Accept': 'application/json'
-                    })
+                    context: new HttpContext().set(CACHEABLE,true)
+                    
                 });
             }
             else if(params.category !== '' && params.name == ''){
-                return this.http.get<any>(`${baseUrl}/GetProductByCategory/${params.category}`);
+                return this.http.get<any>(`${baseUrl}/GetProductByCategory/${params.category}`,{
+                    context: new HttpContext().set(CACHEABLE,true)
+                }
+                );
             }
         }
         return this.http.get<any>(`${baseUrl}/GetProducts/${params.page}`, {
-            context: new HttpContext().set(CONTENT_TYPE,'application/json')
+            context: new HttpContext().set(CACHEABLE,true)
         });
     }
 
@@ -42,7 +45,9 @@ export class ProductsService {
     }
 
     getProductById(id: string): Observable<Product> {
-        return this.http.get<Product>(`${baseUrl}/${id}`)
+        return this.http.get<Product>(`${baseUrl}/${id}`,{
+            context: new HttpContext().set(CACHEABLE,true)
+        })
         .pipe(
             map(p => <Product>{
                 id: p.id,
