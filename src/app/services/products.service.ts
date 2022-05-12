@@ -63,5 +63,5 @@ export class ProductsService {
 
     updateProduct(product: Product): Observable<void>{
         return this.http.put<void>(baseUrl, product);
-    } 
+    }
 }

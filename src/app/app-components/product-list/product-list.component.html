@@ -57,8 +57,11 @@
             <td>{{ product.name }}</td>
             <td>{{ product.category }}</td>
             <td>{{ product.price }} $</td>
-            <td><button type=button class="btn btn-outline-danger"  (click)="confirmDelete(product.id)">Delete</button>
-              <a class="btn btn-outline-info" routerLink="/product-edit/{{product.id}}">Edit</a></td>
+            <td>
+              <button type=button class="btn btn-outline-danger"  (click)="confirmDelete(product.id)">Delete</button>
+              <a class="btn btn-outline-info" routerLink="/product-edit/{{product.id}}">Edit</a>
+              <a class="btn btn-outline-secondary" routerLink="/product-details/{{product.id}}">Details</a>
+            </td>
           </tr>
         </tbody>
       </table>
